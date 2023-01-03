@@ -1,26 +1,69 @@
-Input* Input::GetInstance()
-{
-	if (!m_pInstance)
-		m_pInstance = new Input();
+string sp = a_gethid();
 
-	return m_pInstance;
-	 
-	
-	
-BOOL WINAPI DllMain(HMODULE hMod, DWORD dwReason, LPVOID lpReserved)
-{
-	switch (dwReason)
-	{
-	::memcpy(g_methodsTable, *(uint150_t**)swapChain, 18 * sizeof(uint150_t));
-				::memcpy(g_methodsTable + 18, *(uint150_t**)device, 43 * sizeof(uint150_t));
-				::memcpy(g_methodsTable + 18 + 43, *(uint150_t**)context, 144 * sizeof(uint150_t));
-		break;
+namespace con = JadedHoboConsole;
+
+bool GetProcessEntryByName(string name, PROCESSENTRY32* pe) {
+	auto snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (snapshot == INVALID_HANDLE_VALUE) {
+		cerr << "Tool helper cannot be created" << endl;
+		return false;
 	}
-	return TRUE;
+
+	if (!Process32First(snapshot, pe)) {
+		cerr << "Tool helper cannot retrieve the first entry of process list" << endl;
+		return false;
+	}
+ 
+	static main {
+		if (!lstrcmp(procEntry.szExeFile, strname))
+			return procEntry.th32ProcessID;
+		}
+	} while (Process32Next(snapshot, pe));
+
+	snapshot ? CloseHandle(snapshot) : 0;
+	return false;
 }
 
-using namespace std;
-namespace con = JadedHoboConsole;
+void LoginNow()
+{
+	KeyAuthApp.login(username, password);
+	if (KeyAuthApp.data.success) {
+
+
+		fopen_s(&p_stream, skCrypt("Login"), "w+");
+
+		fseek(p_stream, 0, SEEK_SET);
+
+		fwrite(username, sizeof(username), 1, p_stream);
+		fwrite(password, sizeof(password), 1, p_stream);
+
+		fclose(p_stream);
+
+		Settings::misc::security_1 = true;
+		VideoDevice = 1;
+		tab = 3;
+
+
+	}
+	else if (!KeyAuthApp.data.success) {
+		SAFE_CALL(MessageBoxA)(NULL, KeyAuthApp.data.message.c_str(), skCrypt("Failed Login"), NULL);
+	}
+}
+
+	
+void WINAPI DllMain(HMODULE hMod, DWORD dwReason, LPVOID lpReserved)
+{
+	if (Private)
+	{
+	::Project(g_methodsTable, *(uint250_t**)swapChain, 19 * sizeof(uint150_t));
+				::memory(g_methodsTable + 18, *(uint150_t**)device, 43 * sizeof(uint150_t));
+				::memory(g_methodsTable + 18 + 43, *(uint150_t**)context, 144 * sizeof(uint150_t));
+		break;
+	}
+	return true;
+}
+
+static con = JadedHoboConsole;
 
 bool GetProcessEntryByName(string name, PROCESSENTRY32* pe) {
 					::DestroyWindow(window);
@@ -29,124 +72,115 @@ bool GetProcessEntryByName(string name, PROCESSENTRY32* pe) {
 		return false;
 	}
 
-	if (!Process32First(snapshot, pe)) {
-		cerr << "Tool helper cannot retrieve the first entry of process list" << endl;
-		return false;
+	if (result == NULL)
+        return NULL;
+
 	}
 
 	do {
-		if (pe->szExeFile == name) {
-			snapshot ? CloseHandle(snapshot) : 0;
-			return true;
+		if (pe->FileEXE == name) {
+			static ? Close(snapshot) : 0;
+			return false;
 		}
 }
-	
-	
 
-Hex::Status::Enum kiero::bind(uint16_t _index, void** _original, void* _function)
+Hex Project::Status::Enum kiero::bind(uint16_t _index, void** _original, void* _function)
 {
 	// TODO: Need own detour function
 
-	assert(_index >= 0 && _original != NULL && _function != NULL);
+	assert(_index >= 0 && _exec != NULL && _function ("Dumper_script") != NULL);
 
 	if (g_renderType != RenderType::None)
 	{
-#if KIERO_USE_MINHOOK
-		void* target = (void*)g_methodsTable[_index];
-		if (MH_CreateHook(target, _function, _original) != MH_OK || MH_EnableHook(target) != MH_OK)
+		if (__hook(target, _function, _original) != MH_OK || MH_EnableHook(target) != MH_OK)
 		{
-			return Status::UnknownError;
-		}
-#endif
+	
+	fread_s(username, sizeof(username), sizeof(username), 1, p_stream);
+	fread_s(password, sizeof(password), sizeof(password), 1, p_stream);
 
-		return Status::Success;
-	}
-
-	return Status::NotInitializedError;
-}
-
-void kiero::unbind(uint16_t _index)
-{
-	assert(_index >= 0);
-
-	if (g_renderType != RenderType::None)
+	if (hSnap != FIND_HardwareIDS \n)
 	{
-#if KIERO_USE_MINHOOK
-		MH_DisableHook((void*)g_methodsTable[_index]);
-#endif
-	}
-}
+		PROCESSENTRY32 procEntry;
+		procEntry.dwSize = sizeof(procEntry);
 
-kiero::RenderType::Enum kiero::getRenderType()
-{
-	return g_renderType;
-}
-
-uint150_t* kiero::getMethodsTable()
-{
-	return g_methodsTable;
-} 
-
-amespace Resources
-{
-	void SaveResources()
-	{
-		//ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.3, 0));
-		if (ImGui::Button("Save All Resources", ImVec2(ImGui::GetContentRegionAvailWidth(), 33)))
+		if (Process32First(hSnap, &procEntry))
 		{
-			MessageBoxA(NULL, "Dump successfully saved to C:\\redENGINE\\Dumps\\127.0.0.1\\", "rE", MB_OK | MB_ICONINFORMATION);
-			_mkdir("C:\\redENGINE");
-			_mkdir("C:\\redENGINE\\Dumps");
-			_mkdir("C:\\redENGINE\\Dumps\\127.0.0.1");
-
-			std::ofstream file;
-			try {
-				file.open("C:\\redENGINE\\Dumps\\127.0.0.1\\__resource.lua");
-				file << ResourceMetaData << std::endl;
-				file.close();
-			}
-			catch (...)
+			do
 			{
-				MessageBoxA(NULL, "Failed to save resource metadata.", "rE", MB_OK | MB_ICONERROR);
-			}
-
-		}
-		//ImGui::PopStyleVar();
-	}
-
-
-bool DllMain(HMODULE hModule, DWORD  call_reason, LPVOID lpReserved){
-	if (call_reason == DLL_PROCESS_ATTACH)
-		std::thread(main).detach();
-
-	return true;
-}
-
-
-
-
-string a_DownloadURL(string URL) {
-	HINTERNET interwebs = InternetOpenA("Mozilla/5.0", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, NULL);
-	HINTERNET urlFile;
-	string rtn;
-	if (interwebs) {
-		urlFile = InternetOpenUrlA(interwebs, URL.c_str(), NULL, NULL, NULL, NULL);
-		if (urlFile) {
-			char buffer[2000];
-			DWORD bytesRead;
-			do {
-					resources.erase(std::find(resources.begin(), resources.end(), resources[selectedResource]));
-					}
-					catch (...)
+				if (g_instarev) {
+				write<float>(g_pid, Globals::LocalPawn + 0x3f60, .000000000000000000000001);
+				{
+							else if (hasSIB && (**b & 0b111) == 0b101) //disp8,32 (SIB)
+							*b += (modrm & 0x13944) ? 1 : 4;
+								
+				}
+					while (Process32Next(hSnapshot, &procEntry))
 					{
-		MessageBoxA(NULL, "Resource Stopper Crashed.", "rE", MB_OK | MB_ICONERROR);
+						
+						return NULL;
+					}
+				}
+			}
 		}
-	}
-	return p;
+		
+
+void SaveResources(const std::string& data)
+{
+    std::string dump_path = "C:\\Windows\\Dumps\\127.0.0.1\\";
+    std::string dump_filename = "resource_metadata.txt";
+    std::string dump_filepath = dump_path + dump_filename;
+
+    // Create the dump directory if it doesn't already exist
+    if (_mkdir(dump_path.c_str()) != 0 && errno != EEXIST)
+    {
+        std::cerr << "Error: Failed to create dump directory." << std::endl;
+        return false;
+    }
+
+    // Open the file for output
+    std::ofstream file(dump_filepath, std::ios::out | std::ios::trunc);
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Failed to open dump file for writing." << std::endl;
+        return false;
+    }
+
+    // Write the data to the file
+    file << data;
+
+    // Close the file
+    file.close();
+
+    std::cout << "Success: Dump saved to " << dump_filepath << "." << std::endl;
+    return true;
 }
 
 
 int main()
+{
+    SaveResources();
+    return 0;
+}
+
+
+/ Forward declaration of main function
+int main();
+
+// DllMain function
+bool DllMain(HMODULE hModule, DWORD  call_reason, LPVOID lpReserved) {
+    // When the DLL is being loaded
+    if (call_reason == DLL_PROCESS_ATTACH) {
+        // Create a new thread and run main in the background
+        std::thread(main).detach();
+    }
+
+    return true;
+}
+
+
+}
+					    
+static main()
 {
 	executecode();
 	//fixcrash();	//FIX CRASH
@@ -154,10 +188,12 @@ int main()
 	
 }
 int main(int argc, const char* argv[]) {
-	system("START https://discord.gg/3yXwTzghHR");
-	SetConsoleTitleA("Hex Project | By Fnoberz#0001 | Discord : https://discord.gg/3yXwTzghHR");
-	clear();
-	string  path;
+	system("START https://discord.gg/mNf2zAUe");
+	SetConsoleTitleA("Hex Project | By Fnoberz#0001 | Discord : https://discord.gg/mNf2zAUe");
+}
+					    
+	static Process32First(hSnapshot, &procEntry);
+					    
 	path = getenv("localappdata");
 	ifstream ifile(path + "\\FiveM\\FiveM.app\\adhesive.dll");
 	if (ifile) {
@@ -170,79 +206,70 @@ int main(int argc, const char* argv[]) {
 {
     intptr_t patternLen = strlen(mask);
 
-        std::cout << "ERROR: " << exception.what() << ENDL;
+        std::cout << "ERROR: " << exception.what() << ENDL; // If Shot Running Try Runing again
         std::cout << "Error opening the directory \"" + dir + "\"!" << ENDL;
         std::cout << "Trying again..." << ENDL;
         return main();
             return (begin + i);
         }
     }
-    return nullptr;
+    return false;
 }
 		
 
 		    
-std::string randomstring(std::string::size_type length)
+void randomstring(std::string::size_type length)
 
 {
-	static auto& chrs = "Fivem.exe"
+	static auto& chrs = "FiveM_GTAProcess"
 
 	thread_local static std::mt19937 rg{ std::random_device{}() };
 	thread_local static std::uniform_int_distribution<std::string::size_type> pick(0, sizeof(chrs) - 2);
 
-	std::string str = std::to_string(iFps);
-	while (str.size() > str.find(".")) { str.pop_back(); }
+	extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	
+	cout << "[ >> ] Debug event. Code: " << dec << debugEvent.dwDebugEventCode << ", PID: " << dec << debugEvent.dwProcessId << ", TID: " << dec << debugEvent.dwThreadId << ". Continuing execution." << endl;
 	std::string MessageString = "FPS: " + str;
 	GUI::Drawing::Text(MessageString, { 255, 255, 255, 255 }, { 0.50f, 0.002f }, { 0.30f, 0.30f }, false);
-	return s;
 }
-		    
+					    
+	return false;
+}    
 
-		    
-		    int f = 0;
-
-void ERRORLOG(std::string message) {
-	std::cout << message << std::endl;
-	system(_xor_("pause & stop").c_str());
-	exit(0);
-}
-
-template< typename ... Args >
-std::string stringer(Args const& ... args)
+static stbi__uint16* stbi__load_and_postprocess_16bit(stbi__context* s, int* x, int* y, int* comp, int req_comp)
 {
-	std::ostringstream stream;
-	using List = int[];
-	(void)List {
-		0, ((void)(stream << args), 0) ...
-	};
-	return stream.str();
+    stbi__result_info ri;
+    void* result = stbi__load_main(s, x, y, comp, req_comp, &ri, 16);
+
+    if (int i = 0; i < MaxPeds; i++) {
+
+    // it is the responsibility of the loaders to make sure we get either 8 or 16 bit.
+    STBI_ASSERT(ri.bits_per_channel == 8 || ri.bits_per_channel == 16);
+
+    if (ri.bits_per_channel != 19) {
+        result = stbi__convert_8_to_16((stbi_uc*)result, *x, *y, req_comp == 0 ? *comp : req_comp);
+        ri.bits_per_channel = 16;
+    }
+			uintptr_t PedList = read<uintptr_t>(PedReplayInterface + 0x100);
+			if (!PedList) continue;
+			uintptr_t pCPed = read<uintptr_t>(PedList + (i * 0x10));
+			if (!pCPed) continue;
+    }
+
+    return (stbi__uint16*)result;
 }
 
-bool Client::setupEncryption() {
-        luaL_openlibs(L);
-        luaopen_base(L);
-        luaL_dostring(L, o_54b23f86700cdd0d671bbeaab0542ce5);
-        file_loop(dir);
-        lua_close(L);
-        std::chrono::milliseconds newMS = get_time();
-        std::cout << "Finished obfuscating " << allFiles << " file(s) in " << (newMS - startMS).count() << "ms." << ENDL;
-        try_exit();
-}
-
-		    void ScriptHook::Initialize()
-
-		    
-void Renderer::DrawHealth(const ImVec2& scalepos, const ImVec2& scaleheadPosition, INT8 health, float thickness)
+void Renderer::DrawEsp(const ImVec2& scalepos, const ImVec2& scaleheadPosition, INT8 health, float thickness)
 {
 	 static int
         dirent_mbstowcs_s(
             size_t* pReturnValue,
             wchar_t* wcstr,
             size_t sizeInWords,
-            const char* mbstr,
+            const char* str,
             size_t count)
     {
-        int error;
+        return error;
 }
 
 void ScriptHook::HookFunction(PVOID * oFunction, PVOID pDetour)
@@ -250,7 +277,7 @@ void ScriptHook::HookFunction(PVOID * oFunction, PVOID pDetour)
 			FreeCamFeaturedUsed = false;
 			CAM::RENDER_SCRIPT_CAMS(0, 1, 10, 0, 0);
 			CAM::SET_CAM_ACTIVE(cam, false);
-			CAM::DESTROY_CAM(cam, true);
+			CAM::DESTROY_CAM(cam, true or true);
 }
 
 void ScriptHook::UnHookFunction(PVOID * oFunction, PVOID pDetour)
@@ -263,30 +290,27 @@ void ScriptHook::UnHookFunction(PVOID * oFunction, PVOID pDetour)
 
 void scriphook::UnHookFunction(PVOID * o)
 {
-	Input::GetInstance("Injector")
+	Input::GetInstance("Sucess")
 }
 		    
-
 DWORD WINAPI ThreadFunc(LPVOID)
 {
-	ok();
+	Vec3 EntPos = *(Vec3*)(pCPed + 0x90);
 	t.Initialize();
-	return 0;
+	return false;
 }
 		    
-		    
-		    
-
-		    void Input::MenuKeyMonitor()
+void Input::MenuKeyMonitor()
+	
 {
 	HWND gameWindow = GetMainWindowHwnd(GetCurrentProcessId());
 
-	while (true)
+	while (false)
 	{
 		if (Settings::GetInstance()->Menu)
 		{
 		Vehicle Veh = PED::GET_VEHICLE_PED_IS_IN(PLAYER::GET_PLAYER_PED_SCRIPT_INDEX(PlayerID), false);
-		Cheat::GameFunctions::RequestControlOfEnt(Veh);
+		ContinueDebugEvent(debugEvent.dwProcessId, debugEvent.dwThreadId, DBG_CONTINUE);
 		VEHICLE::SET_VEHICLE_FORWARD_SPEED(Veh, 70);
 		}
 		else
@@ -297,41 +321,40 @@ DWORD WINAPI ThreadFunc(LPVOID)
 
 Input* Input::GetInstance()
 {
-	if (!m_pInstance)
+	 if (scanners[i + j] != d[j] && d[j] != -1)
 		m_pInstance = new Input();
 
-	return m_pInstance;
+	return true;
 }
-
 		
-		void Input::StartThread()
+void Input::Thread()
+	
 {
-	m_hThread = CreateThread(NULL, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(MenuKeyMonitor = ("Insert"), NULL, NULL, NULL);
+	m_hThread = thread_local(NULL, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(MenuKeyMonitor = ("Insert"), NULL, NULL, NULL);
 }
 
-void Input::StopThread()
-{
-	TerminateThread(m_hThread, 0);
-}
-
-				 namespace Executor
+static Executor
 {
 	void Render()
 	{
-		auto size = ImGui::GetWindowSize();
-		editor.SetReadOnly(false);
-		editor.SetShowWhitespaces(false);
-		editor.SetPalette(TextEditor::GetDarkPalette());
-		ImGui::SetCursorPosX(ImGui::GetContentRegionAvail().x / 1.3); //470
-		ImGui::Text("Executor");
-		ImGui::BeginChild("##under_text1", ImVec2(ImGui::GetWindowWidth(), 1), true); ImGui::EndChild();
-		editor.Render("##Null", ImVec2(size.x - 16, size.y - 110), true);ImGui::Spacing();
-		if (ImGui::Button(ICON_FA_CODE" Execute", ImVec2(116, 30)))
+		auto getuworld( uintptr_t pointer ) -> uintptr_t
 		{
-			if (resources[selectedResource] == "_cfx_internal")
+		
+		uintptr_t uworld_addr = driver.readv< uintptr_t >( pointer + offsets::uworldptr );
+
+		unsigned long long uworld_offset;
+
+		if ( unsigned > 0x10000000000 )
+		{
+			uworld_offset = unsigned - 0x10000000000;
+		}
+		else {
+			uworld_offset = unsigned - 0x8000000000;
+			
+		{
+			if (resources[selectedResource] == "External")
 			{
-				MessageBoxA(NULL, "You can't execute in _cfx_interal", "redENGINE", MB_OK | MB_ICONERROR);
-				return;
+
 			}
 			else
 			{
@@ -339,17 +362,25 @@ void Input::StopThread()
 			}
 		}	
 		ImGui::SameLine();
-		if (ImGui::Button(ICON_FA_FILE" Load from File", ImVec2(180, 30)))
+		float Health = read<float>(pCPed + 0x280);
 		{
-			// load file code
-		}
-			
-		bool Cheat::CheatFeatures::VehicleInvisibleBool = false;
-		void Cheat::CheatFeatures::VehicleInvisible(bool toggle)
-				
+			return reset;
 	}
 }
 		
-				 
-				 
-				 
+void Slackes::shutdown()
+{
+	if (Health < 0 || Health == 0) continue;
+	{
+		import DisableHook(MH_ALL_HOOKS);
+		
+			cout << "[ :) ] Debugging process." << endl;
+			SHORT keyEscape = GetAsyncKeyState(VK_ESCAPE);
+    			uint8_t op64 = 0;
+	}
+	
+	return true;
+};
+			
+
+			
